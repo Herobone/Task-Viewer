@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task-Viewer</title>
+    <link rel="stylesheet" href="style/w3.css">
+    <link rel="stylesheet" href="style/grey.css">
+</head>
+
+<body class="w3-theme-action">
+    <table class="w3-center">
+        <tr>
+            <th>
+                <h1>CPU</h1>
+            </th>
+            <th>
+                <h1>MEMORY</h1>
+            </th>
+            <th>
+                <h1>DISK</h1>
+            </th>
+        </tr>
+        <tr>
+            <td><canvas id="cpuChart" width="300" height="300"></canvas></td>
+            <td><canvas id="memoryChart" width="300" height="300"></canvas></td>
+            <td><canvas id="diskChart" width="300" height="300"></canvas></td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Usage</h2>
+                <h3 id="cpuUsagePercent"></h3>
+            </td>
+            <td>
+                <h2>Usage</h2>
+                <h3 id="freeMEMpercent"></h3>
+            </td>
+            <td>
+                <h2>Free Space</h2>
+                <h3 id="freeDiskSpace"></h3>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <table id="Info"></table>
+</body>
+
+<script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+</script>
+
+</html>

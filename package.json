@@ -1,0 +1,27 @@
+{
+    "name": "task-viewer",
+    "version": "1.0.0",
+    "description": "A program to view how much memory, cpu and Disk Space is left. All this with minimal system usage and a quite good look",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": "https://github.com/Herobone/Task-Viewer",
+    "keywords": [
+        "Electron",
+        "resources"
+    ],
+    "author": "Herobone",
+    "license": "GNU GENERAL PUBLIC LICENSE",
+    "devDependencies": {
+        "electron": "~1.6.2"
+    },
+    "dependencies": {
+        "electron": "~1.6.2",
+        "chart.js": "^2.6.0",
+        "diskspace": "^2.0.0",
+        "jquery": "^3.2.1",
+        "os": "^0.1.1",
+        "os-utils": "0.0.14"
+    }
+}
