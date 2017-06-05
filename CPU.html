@@ -28,18 +28,6 @@
             width: 120px;
             background: #222;
         }
-        /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-        
-        #main {
-            margin-left: 120px
-        }
-        /* Remove margins from "page content" on small screens */
-        
-        @media only screen and (max-width: 600px) {
-            #main {
-                margin-left: 0
-            }
-        }
     </style>
 </head>
 
@@ -50,50 +38,24 @@
         <button class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey" id="FullscreenButton"><i class="fa fa-desktop"></i>  Toggle Fullscreen</button>
     </div>
     <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-white w3-animate-left" style="z-index:3;width:300px;display:none;margin-top:-18px" id="Sidebar">
+    <nav class="w3-sidebar w3-white w3-animate-left" style="z-index:3;width:300px;display:none;margin-top:-30px" id="Sidebar">
         <div class="w3-container">
             <h5>Menu</h5>
         </div>
         <div class="w3-bar-block">
-            <a href="javascript:void" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Main</a>
-            <a href="CPU.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  CPU</a>
+            <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Main</a>
+            <a href="javascript:void" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-eye fa-fw"></i>  CPU</a>
         </div>
     </nav>
     <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-    <div class="w3-main w3-content" style="margin-top: 18px">
-        <table class="w3-center">
-            <tr>
-                <th>
-                    <h1 id="cpu-link">CPU</h1>
-                </th>
-                <th>
-                    <h1>MEMORY</h1>
-                </th>
-                <th>
-                    <h1>DISK</h1>
-                </th>
-            </tr>
-            <tr>
-                <td><canvas id="cpuChart" width="300" height="300" class="cpu-link"></canvas></td>
-                <td><canvas id="memoryChart" width="300" height="300"></canvas></td>
-                <td><canvas id="diskChart" width="300" height="300"></canvas></td>
-            </tr>
-            <tr>
-                <td>
-                    <h2>Usage</h2>
-                    <h3 id="cpuUsagePercent"></h3>
-                </td>
-                <td>
-                    <h2>Usage</h2>
-                    <h3 id="freeMEMpercent"></h3>
-                </td>
-                <td>
-                    <h2>Free Space</h2>
-                    <h3 id="freeDiskSpace"></h3>
-                </td>
-            </tr>
-        </table>
-        <!-- Footer -->
+    <div class="w3-main w3-center" style="margin-top:30px">
+        <h1>CPU</h1>
+        <canvas id="cpuChart" width="300" height="300" class="w3-content"></canvas>
+        <h2>Usage</h2>
+        <h3 id="cpuUsagePercent"></h3>
+        <hr>
+        <table id="Info" class="w3-content"></table>
+
         <footer class="w3-center w3-padding-64 w3-text-grey w3-xlarge">
             <hr class="w3-content">
             <!--<i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -103,7 +65,6 @@
             <i class="fa fa-twitter w3-hover-opacity"></i>
             <i class="fa fa-linkedin w3-hover-opacity"></i>-->
             <p class="w3-medium"><a href="http://herobone.com" target="_blank" class="w3-hover-text-green">Herobone</a></p>
-            <!-- End footer -->
         </footer>
 
         <!-- END PAGE CONTENT -->
@@ -112,7 +73,7 @@
 
 <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
+    require('./renderCPU.js')
 </script>
 
 </html>

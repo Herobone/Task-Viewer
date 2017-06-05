@@ -1,6 +1,6 @@
 {
     "name": "task-viewer",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "description": "A program to view how much memory, cpu and Disk Space is left. All this with minimal system usage and a quite good look",
     "main": "main.js",
     "scripts": {
@@ -14,12 +14,12 @@
     "author": "Herobone",
     "license": "GNU GENERAL PUBLIC LICENSE",
     "devDependencies": {
-        "electron": "~1.6.2"
+        "jshint": "^2.9.4"
     },
     "dependencies": {
-        "electron": "~1.6.2",
         "chart.js": "^2.6.0",
         "diskspace": "^2.0.0",
+        "electron": "~1.6.2",
         "jquery": "^3.2.1",
         "os": "^0.1.1",
         "os-utils": "0.0.14"

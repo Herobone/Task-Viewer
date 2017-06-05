@@ -3,6 +3,7 @@ const osUtils = require('os-utils');
 const Chart = require("chart.js");
 const diskspace = require('diskspace');
 const $ = require('jquery');
+const ipc = require('electron').ipcRenderer;
 
 var cpuInfo = os.cpus();
 var totalMem = osUtils.totalmem();
@@ -12,57 +13,12 @@ var plattform = os.platform();
 var ctx = document.getElementById("memoryChart").getContext('2d');
 var ctxcpu = document.getElementById("cpuChart").getContext('2d');
 var ctxdisk = document.getElementById("diskChart").getContext('2d');
+var Sidebar = document.getElementById("Sidebar");
+var overlayBg = document.getElementById("myOverlay");
+var menuButton = document.getElementById("MenuButton");
+var FullscreenButton = document.getElementById("FullscreenButton");
 
-//TABLE CONFIG
-var infoofthismodelrow = document.createElement("TR");
-var infoofthisspeedrow = document.createElement("TR");
-var TimesHeadingrow = document.createElement("TR");
-var infoofthistimerow_user = document.createElement("TR");
-var infoofthistimerow_system = document.createElement("TR");
-var infoofthistimerow_irq = document.createElement("TR");
-var infoofthistimerow_idle = document.createElement("TR");
-
-//TABLE INITIALISATION
-cpuInfo.forEach(function(val, index) {
-    var infoofthismodel = document.createElement("TH");
-    infoofthismodel.innerHTML = val.model;
-    infoofthismodelrow.appendChild(infoofthismodel);
-
-    var infoofthisspeed = document.createElement("TD");
-    infoofthisspeed.innerHTML = "Speed: " + val.speed + "Hz (" + (val.speed / 1000).toFixed(1) + "GHz)";
-    infoofthisspeedrow.appendChild(infoofthisspeed);
-
-    var TimesHeading = document.createElement("TH");
-    TimesHeading.innerHTML = "Times";
-    TimesHeadingrow.appendChild(TimesHeading);
-
-    var infoofthistime = document.createElement("TD");
-    infoofthistime.innerHTML = "User: " + val.times.user + "ms";
-    infoofthistimerow_user.appendChild(infoofthistime);
-
-    infoofthistime = document.createElement("TD");
-    infoofthistime.innerHTML = "System: " + val.times.sys + "ms";
-    infoofthistimerow_system.appendChild(infoofthistime);
-
-    infoofthistime = document.createElement("TD");
-    infoofthistime.innerHTML = "Irq: " + val.times.irq + "ms";
-    infoofthistimerow_irq.appendChild(infoofthistime);
-
-    infoofthistime = document.createElement("TD");
-    infoofthistime.innerHTML = "Idle: " + val.times.idle + "ms";
-    infoofthistimerow_idle.appendChild(infoofthistime);
-});
-
-//INSERT TABLE
-document.getElementById("Info").appendChild(infoofthismodelrow);
-document.getElementById("Info").appendChild(infoofthisspeedrow);
-document.getElementById("Info").appendChild(TimesHeadingrow);
-document.getElementById("Info").appendChild(infoofthistimerow_user);
-document.getElementById("Info").appendChild(infoofthistimerow_system);
-document.getElementById("Info").appendChild(infoofthistimerow_irq);
-document.getElementById("Info").appendChild(infoofthistimerow_idle);
-
-
+var cpuLink = document.getElementById("cpu-link");
 //PARTS OF THIS FUNCTON WILL BE PERFORMED CONSTANTLY
 function performConstant() {
     var cpuUsage = process.cpuUsage();
@@ -207,3 +163,46 @@ var SlowTimer = setInterval(function() {
     performConstantSlow();
 }, 60000);
 performConstantSlow();
+
+function w3_open() {
+    if (Sidebar.style.display === 'block') {
+        Sidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        Sidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+function w3_close() {
+    Sidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+//EVENT LISTENER
+
+overlayBg.addEventListener('click', function(clickEvent) {
+    w3_close();
+    console.log("Clicked Overlay!");
+});
+
+menuButton.addEventListener('click', function(clickEvent) {
+    w3_open();
+    console.log("Clicked Menu Button!");
+});
+
+FullscreenButton.addEventListener('click', function(clickEvent) {
+    ipc.send("togglefullscreen");
+});
+
+cpuLink.addEventListener('click', function(clickEvent) {
+    ipc.send("goToPage", "CPU.html");
+});
+
+document.getElementById("cpuChart").addEventListener('click', function(clickEvent) {
+    ipc.send("goToPage", "CPU.html");
+});
+
+document.getElementById("cpuUsagePercent").addEventListener('click', function(clickEvent) {
+    ipc.send("goToPage", "CPU.html");
+});
