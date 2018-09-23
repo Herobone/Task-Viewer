@@ -27,7 +27,7 @@ function createWindow() {
                 submenu: [{
                     label: 'Learn More',
                     click() {
-                        shell.openExternal('http://herobone.com');
+                        shell.openExternal('https://herobone.de');
                     }
                 }]
             }
