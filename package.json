@@ -19,7 +19,7 @@
     "dependencies": {
         "chart.js": "^2.6.0",
         "diskspace": "^2.0.0",
-        "electron": "~1.6.2",
+        "electron": "^3.0.0",
         "jquery": "^3.2.1",
         "os": "^0.1.1",
         "os-utils": "0.0.14"
